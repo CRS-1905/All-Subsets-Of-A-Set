@@ -5,23 +5,37 @@ int power(int n);
 
 int main()
 {
-	int n,i,m,j,k;
+	int n,i,m,j,k,*a;
 
 	printf("Enter The Number Of Points:\t");
 	scanf("%d",&n);
 	
+	a=(int *)malloc(n*sizeof(int));
+	
 	m=power(n);
+	for(i=0;i<n;i++)
+		a[i]=1;
 
-	for(i=m-1;i>=0;i--)
+	for(i=m-1;i>=1;i--)
 	{
-
-		for(j=0;j<n;j++)
+		for(k=0;k<n;k++)
 		{
-			k=i>>j & 1;
-			if(k == 1)
-				printf("%d",j+1);
+			if(a[k] == 1)
+				printf("%d",k+1);
 		}
 		printf("\n");
+
+		for(j=n-1;j>=0;j--)
+		{
+			if(a[j] == 0)
+				a[j]=1;
+			else
+			{
+				a[j]=0;
+				break;
+			}
+		}
+			
 	}
 }
 
